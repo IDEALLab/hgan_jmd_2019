@@ -7,7 +7,7 @@ This code is licensed under the MIT license. Feel free to use all or portions fo
 
 Chen W, Fuge M. Synthesizing Designs With Inter-Part Dependencies Using Hierarchical Generative Adversarial Networks. ASME. J. Mech. Des. 2019. (Accepted)
 
-    @article{chen2018hgan,
+    @article{chen2019hgan,
         author={Chen, Wei and Fuge, Mark},
         title={Synthesizing Designs with Inter-part Dependencies Using Hierarchical Generative Adversarial Networks},
         journal={Journal of Mechanical Design},
