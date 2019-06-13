@@ -54,6 +54,12 @@ optional arguments:
 --save_interval 	number of intervals for saving the trained model and plotting results
 ```
 
+Example: train HGAN on AHH:
+
+```bash
+python run_3parts.py startover AHH --sample_size=10000 --save_interval=500
+```
+
 ### Train/evaluate InfoGAN:
 
 ```bash
