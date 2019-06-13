@@ -42,7 +42,7 @@ python run_<n>parts.py
 positional arguments:
     
 ```
-mode	startover, continue or evaluate
+mode	startover or evaluate
 data	dataset
 ```
 
@@ -63,7 +63,7 @@ python run_infogan.py
 positional arguments:
     
 ```
-mode	startover, continue or evaluate
+mode	startover or evaluate
 data	dataset
 ```
 
