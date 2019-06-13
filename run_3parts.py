@@ -24,17 +24,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Train')
     parser.add_argument('mode', type=str, default='startover', help='startover, continue, or evaluate')
     parser.add_argument('data', type=str, default='AHH', help='AHH, SEoEi, SEiEo, or SCC')
-    parser.add_argument('--model', type=str, default='hgan', help='hgan, hgan_cat, or hgan_wo_info')
     parser.add_argument('--sample_size', type=int, default=10000, help='sample size')
     parser.add_argument('--save_interval', type=int, default=500, help='save interval')
     args = parser.parse_args()
     assert args.mode in ['startover', 'continue', 'evaluate']
     assert args.data in ['AHH', 'SEoEi', 'SEiEo', 'SCC']
-    assert args.model in ['hgan', 'hgan_cat', 'hgan_wo_info']
     
     print('##################################################################')
     print('Data: {}'.format(args.data))
-    print('Model: {}'.format(args.model))
+    model_name = 'hgan'
+    print('Model: {}'.format(model_name))
     print('Sample size: {}'.format(args.sample_size))
     
     # Set hyper-parameters
@@ -96,12 +95,12 @@ if __name__ == "__main__":
     X2_test = X_test[:,-n_points[2]:]
     X_test_list = [X0_test, X1_test, X2_test]
     
-    results_dir = 'results/{}/{}/{}'.format(args.data, args.model, args.sample_size)
+    results_dir = 'results/{}/{}/{}'.format(args.data, model_name, args.sample_size)
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)
     
     # Train
-    h = import_module('{}.{}'.format(args.data, args.model))
+    h = import_module('{}.{}'.format(args.data, model_name))
     model = h.Model(latent_dim, noise_dim, n_points, bezier_degree)
     if args.mode == 'startover':
         timer = ElapsedTimer()
@@ -134,7 +133,7 @@ if __name__ == "__main__":
               scatter=False, alpha=.7, c='k', fname='{}/x1'.format(results_dir))
     
     print('Plotting synthesized x2 ...')
-    if args.model == 'hgan_cat':
+    if model_name == 'hgan_cat':
         synthesize_x2_0 = lambda x: model.synthesize_x2(x, 0, [X0, X1])
         synthesize_x2_1 = lambda x: model.synthesize_x2(x, 1, [X0, X1])
         plot_grid(5, gen_func=synthesize_x2_0, proba_func=None, d=latent_dim[2], scale=.95, 

@@ -50,7 +50,6 @@ optional arguments:
 
 ```
 -h, --help            	show this help message and exit
---model			select which model to use: hgan or wo_info (hgan without mutual information loss)
 --sample_size		sample size
 --save_interval 	number of intervals for saving the trained model and plotting results
 ```

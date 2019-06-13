@@ -24,17 +24,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Train')
     parser.add_argument('mode', type=str, default='startover', help='startover, continue, or evaluate')
     parser.add_argument('data', type=str, default='AH', help='AH or SE')
-    parser.add_argument('--model', type=str, default='hgan', help='hgan, hgan_cat, or hgan_wo_info')
     parser.add_argument('--sample_size', type=int, default=10000, help='sample size')
     parser.add_argument('--save_interval', type=int, default=500, help='save interval')
     args = parser.parse_args()
     assert args.mode in ['startover', 'continue', 'evaluate']
     assert args.data in ['AH', 'SE', 'SC']
-    assert args.model in ['hgan', 'hgan_wo_info']
     
     print('##################################################################')
     print('Data: {}'.format(args.data))
-    print('Model: {}'.format(args.model))
+    model_name = 'hgan'
+    print('Model: {}'.format(model_name))
     print('Sample size: {}'.format(args.sample_size))
     
     # Set hyper-parameters
@@ -82,12 +81,12 @@ if __name__ == "__main__":
     X1_test = X_test[:,n_points[0]:]
     X_test_list = [X0_test, X1_test]
     
-    results_dir = 'results/{}/{}/{}'.format(args.data, args.model, args.sample_size)
+    results_dir = 'results/{}/{}/{}'.format(args.data, model_name, args.sample_size)
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)
     
     # Train
-    h = import_module('{}.{}'.format(args.data, args.model))
+    h = import_module('{}.{}'.format(args.data, model_name))
     model = h.Model(latent_dim, noise_dim, n_points, bezier_degree)
     if args.mode == 'startover':
         timer = ElapsedTimer()
