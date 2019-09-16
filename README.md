@@ -11,9 +11,9 @@ Chen W, Fuge M. Synthesizing Designs With Inter-Part Dependencies Using Hierarch
         author={Chen, Wei and Fuge, Mark},
         title={Synthesizing Designs with Inter-part Dependencies Using Hierarchical Generative Adversarial Networks},
         journal={Journal of Mechanical Design},
-        volume={},
-        number={},
-        pages={},
+        volume={141},
+        number={11},
+        pages={111403},
         year={2019},
         publisher={American Society of Mechanical Engineers}
     }
